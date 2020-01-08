@@ -1,12 +1,14 @@
 package matteo.application.model;
 
-import java.time.Instant;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity
 @Table(name = "Studenti")
@@ -16,16 +18,17 @@ public class Studenti {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	
 	private int idClasse;
 	private String name;
 	private String surname;
 	private String comuneDiNascita;
-	private Instant dataDiNascita;
+	
+	@JsonFormat(pattern = "dd/MM/yyyy")
+	private Date dataDiNascita;
 	
 	public Studenti() {}
 	
-	public Studenti(String name, String surname,String comuneDiNascita,Instant dataDiNascita,int idClasse) {
+	public Studenti(String name, String surname, String comuneDiNascita, Date dataDiNascita,int idClasse) {
         this.surname= surname;
         this.name = name;
         this.comuneDiNascita = comuneDiNascita;
@@ -88,12 +91,26 @@ public class Studenti {
 		this.comuneDiNascita = comuneDiNascita;
 	}
 
-	public Instant getDataDiNascita() {
+	public Date getDataDiNascita() {
 		return dataDiNascita;
 	}
 
-	public void setDataDiNascita(Instant dataDiNascita) {
+//	public void setDataDiNascita(String dataDiNascita) {
+//		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+//		LocalDate date = LocalDate.parse(dataDiNascita,formatter) ;
+//		
+//		try {
+//			this.dataDiNascita =	date ;
+//			System.out.println("data-->" + this.dataDiNascita);
+////			this.dataDiNascita = new SimpleDateFormat("dd/MM/yyyy").parse(dataDiNascita);
+//			
+//		} catch (Exception e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+//	}
+
+	public void setDataDiNascita(Date dataDiNascita) {
 		this.dataDiNascita = dataDiNascita;
 	}
-
 }
