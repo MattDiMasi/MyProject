@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import matteo.application.model.Classi;
+import matteo.application.model.Professori;
 import matteo.application.model.Studenti;
 import matteo.application.service.ScuolaService;
 
@@ -27,6 +28,11 @@ public class Controller  {
     public ResponseEntity<List<Classi>> classiG() {          //return a ResponseEntity because in a error case it returns the error code
 		return ResponseEntity.ok(scuolaService.findAllClassi());            //call the method of the ClassiRepository
 	}
+	
+//	@GetMapping("/classi/{email}")                     
+//    public ResponseEntity<List<Classi>> classiGetEmail(@PathVariable("email") String email) {          
+//		return ResponseEntity.ok(scuolaService);   
+//	}
 	
 	@GetMapping("/studenti")
 	public ResponseEntity<List<Studenti>> studentiG(){
@@ -68,5 +74,10 @@ public class Controller  {
     public ResponseEntity<Studenti> updateStudenti(@RequestBody Studenti s,@PathVariable("id") int id){
     	
     	return ResponseEntity.ok(scuolaService.updateStudenti(s));
+    }
+    
+    @PostMapping("/login") 
+    public ResponseEntity<Integer> login(@RequestBody Professori p){
+    	return ResponseEntity.ok(scuolaService.login(p.getEmail(), p.getPassword()));
     }
 }

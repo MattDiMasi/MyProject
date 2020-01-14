@@ -1,4 +1,4 @@
-package matteo.application;
+package matteo.application.repository;
 
 import java.util.List;
 

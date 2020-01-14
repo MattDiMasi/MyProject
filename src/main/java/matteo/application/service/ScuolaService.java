@@ -23,4 +23,6 @@ public interface ScuolaService  {
 	Studenti updateStudenti(Studenti s);
 	
 	Classi updateClassi(Classi c);
+	
+	int login(String email,String password);
 }
